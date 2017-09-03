@@ -12,9 +12,9 @@
       <div class="row" ng-controller="ListingsController">
         <div class="col-md-6">
           <div class="input-group" id="searchBar">
-            <!-- 
+            <!--
 
-                Implement a way to filter through listings using the search bar 
+                Implement a way to filter through listings using the search bar
 
               -->
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
@@ -27,31 +27,44 @@
                 <th>Building Name</th>
                 <th></th>
               </tr>
-              <!-- 
+              <tr ng-repeat="entry in listings">
+                  <td>
+                    {{entry.code}}
+                  </td>
+                  <td>
+                    {{entry.name}}
+                  </td>
 
-                  Fill in the rest of the table:
-                      * populate the rows with the code and name of each listing
-                      * include a way to remove individual listings
+              </tr>
+                      <!-- include a way to remove individual listings
 
-                --> 
+                -->
             </table>
           </div>
-          <!-- 
+          <div class="input-group" id='newName'>
+            <input type="text" class="form-control" placeholder="Name" ng-model="name">
+            <input type="text" class="form-control" placeholder="Code" ng-model="code">
+            <button ng-click="addFunction()">Submit</button>
+          </div>
+                  <!--
 
-              Write an HTML form that adds new listings to the directory 
+              Write an HTML form that adds new listings to the directory
 
             -->
         </div>
         <div class="col-md-6">
           <div class="jumbotron">
             <h2>Detailed Information</h2>
-            <!-- 
+            <p>{{text}}</p>
+            <p1> hi </p1>
+             <!--
 
               Include a way to display detailed information about an individual listing:
                    * consider how to use ng-click within the the table to implement this feature
 
              -->
           </div>
+
         </div>
       </div>
     </div>
