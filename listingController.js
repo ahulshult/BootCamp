@@ -2,20 +2,29 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
   function($scope, Listings) {
     $scope.listings = Listings;
     $scope.detailedInfo = undefined;
-    $scope.name = "";
-    $scope.code = "";
-    $scope.text = ["345"];
+    $scope.searchText = "d";
+    //console.log($scope.searchText);
+    $scope.sortType = "code";
     /*
       Implement these functions in the controller to make your application function
       as described in the assignment spec.
      */
-
     $scope.addListing = function() {
-    if ($scope.name !== "" && $scope.code !== ""){
-      $scope.text.push($scope.name);
-      $scope.text.push($scope.code);
+      var arr = ['', '', '', '', '', ''];
+        var myForm = document.forms[0];
+        for(i=0; i<5; i++){
+          arr[i] = myForm.elements[i].value;
+          console.log(arr);
+        }
+      if (arr[0] !== "" && arr[1] !== ""){
+        $scope.listings.push({'code': arr[0], 'name':arr[1], 'coordinates': {'latitude': arr[2], 'longitude': arr[3]}, 'address': arr[4]});
+        console.log($scope.listings);
       }
-    }
-    $scope.deleteListing = function(index) {}
+      else{
+        $scope.searchItem = "";
+      }
+    };
+    $scope.deleteListing = function(index) {};
+    $scope.showDetails = function(index) {};
   }
 ]);
