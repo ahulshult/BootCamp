@@ -5,6 +5,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.searchText = "";
     //console.log($scope.searchText);
     $scope.sortType = "code";
+
     /*
       Implement these functions in the controller to make your application function
       as described in the assignment spec.
@@ -36,6 +37,19 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
   		}
   		$scope.listings.splice( bool, 1 );
       };
-    $scope.showDetails = function(index) {};
+    $scope.showDetails = function(entry) {
+      var str = '';
+      str = "Code: " + entry.code + "\n";
+      str = str + "Name: "+ entry.name + "\n";
+      if (entry.coordinates !== undefined){
+        tr = str + "coordinates: ";
+        str = str + "Latitude: " + entry.coordinates.latitude + "\n";
+        str = str + "Longitude: " + entry.coordinates.longitude + "\n";
+      }
+      if (entry.address !== undefined){
+        str = str + "Address: "+ entry.address + "\n";
+      }
+      $scope.detailedInfo = str;
+    };
   }
 ]);
