@@ -25,13 +25,16 @@
                 <th>Building Name</th>
                 <th></th>
               </tr>
-              <tr ng-repeat="entry in listings | filter: searchText">
+              <tr ng-repeat="entry in listings | filter: searchText | orderBy: sortType">
                   <td>
                     {{entry.code}}
                   </td>
                   <td>
                     {{entry.name}}
                   </td>
+                  <td>
+                  <input type="button" value="Remove" class="btn btn-primary" ng-click="deleteListing(entry.code)"/>
+                </td>
               </tr>
               <!--
                   Fill in the rest of the table:
