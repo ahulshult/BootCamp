@@ -1,7 +1,11 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
   function($scope, Listings) {
     $scope.listings = Listings;
-    $scope.detailedInfo = undefined;
+    //$scope.detailedInfo =
+    $scope.name = undefined;
+    $scope.code = "Please select a row from the table to view more information";
+    $scope.coordinates = undefined;
+    $scope.address = undefined;
     $scope.searchText = "";
     //console.log($scope.searchText);
     $scope.sortType = "code";
@@ -22,6 +26,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       else{
         alert( "Please make sure 'Code' and 'Name' fields are complete." );
       }
+      myForm.reset()
     };
     $scope.deleteListing = function(code) {
       var bool = -1;
@@ -39,17 +44,26 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       };
     $scope.showDetails = function(entry) {
       var str = '';
-      str = "Code: " + entry.code + "\n";
-      str = str + "Name: "+ entry.name + "\n";
+      str = "Code: " + entry.code;
+      $scope.code = str;
+      str = "Name: "+ entry.name;
+      $scope.name = str;
       if (entry.coordinates !== undefined){
-        tr = str + "coordinates: ";
+        str = "Coordinates: ";
         str = str + "Latitude: " + entry.coordinates.latitude + "\n";
         str = str + "Longitude: " + entry.coordinates.longitude + "\n";
+
+      } else{
+        str = 'Coordinates: Undefined';
       }
+      $scope.coordinates = str;
       if (entry.address !== undefined){
-        str = str + "Address: "+ entry.address + "\n";
+        str = "Address: "+ entry.address + "\n";
+      } else {
+        str = 'Address: Undefined';
       }
-      $scope.detailedInfo = str;
+      $scope.address = str;
+      $scope.detailedInfo = '';
     };
   }
 ]);
