@@ -25,7 +25,7 @@
                 <th>Building Name</th>
                 <th></th>
               </tr>
-              <tr ng-repeat="entry in listings | filter: searchText | orderBy: sortType">
+              <tr ng-repeat="entry in listings | filter: searchText | orderBy: sortType" ng-click=showDetails(entry)>
                   <td>
                     {{entry.code}}
                   </td>
@@ -36,11 +36,6 @@
                   <input type="button" value="Remove" class="btn btn-primary" ng-click="deleteListing(entry.code)"/>
                 </td>
               </tr>
-              <!--
-                  Fill in the rest of the table:
-                      * populate the rows with the code and name of each listing
-                      * include a way to remove individual listings
-                -->
             </table>
             </div>
             <div class="input-group" id="addForm">
@@ -57,10 +52,7 @@
         <div class="col-md-6">
           <div class="jumbotron">
             <h2>Detailed Information</h2>
-            <!--
-              Include a way to display detailed information about an individual listing:
-                   * consider how to use ng-click within the the table to implement this feature
-             -->
+            {{detailedInfo}}
           </div>
         </div>
       </div>
